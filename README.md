@@ -2,16 +2,39 @@
 
 Author : Lucy SAINT-AURET  
 Starting date : 29/04/2025  
+Ending date : --/--/----  
 
 This is a personal project aiming to design and built a low-cost robotic hand using an Arduino microcontroller and simple materials. The goal is to explore key aspects of bionic prosthetics and embedded systems programming.
 
 
 ## Table of contents
 
-1. [Objectives](#objectives)
-2. [Materials](#materials)
-3. [Planned features](#planned-features)
-4. [To-Do](#to-do)
+1. [Project's structure](#projects-structure)
+2. [Objectives](#objectives)
+3. [Materials](#materials)
+4. [Planned features](#planned-features)
+5. [To-Do](#to-do)
+
+## Project's structure
+
+```
+C:.
+│   README.md
+├───docs
+│       README.md
+├───hardware
+│       README.md
+├───src
+│   │   README.md
+│   ├───core
+│   │       README.md
+│   ├───features
+│   │       README.md
+│   └───utils
+│           README.md
+└───test
+        README.md
+```
 
 ## Objectives 
 
