@@ -15,8 +15,8 @@ Ending date : --/--/----
 ## Folder's structure
 
 ```
-C:.
-    README.md
+test/
+└─── README.md
 ```
 
 ## Description

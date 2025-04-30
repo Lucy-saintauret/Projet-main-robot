@@ -15,14 +15,17 @@ Ending date : --/--/----
 ## Folder's structure
 
 ```
-C:.
-│   README.md
-├───core
-│       README.md
-├───features
-│       README.md
-└───utils
-        README.md
+src/
+├─── README.md
+│
+├─── core/
+│    └─── README.md
+│
+├─── features/
+│    └─── README.md
+│
+└─── utils/
+     └─── README.md
 ```
 
 ## Description

@@ -18,22 +18,29 @@ This is a personal project aiming to design and built a low-cost robotic hand us
 ## Project's structure
 
 ```
-C:.
-│   README.md
-├───docs
-│       README.md
-├───hardware
-│       README.md
-├───src
-│   │   README.md
-│   ├───core
-│   │       README.md
-│   ├───features
-│   │       README.md
-│   └───utils
-│           README.md
-└───test
-        README.md
+projet-main-robot/
+├─── README.md
+│
+├─── docs/
+│    └─── README.md
+│
+├─── hardware/
+│    └─── README.md
+│ 
+├─── src/
+│    ├─── README.md
+│    │  
+│    ├─── core/
+│    │    └─── README.md
+│    │  
+│    ├─── features/
+│    │    └─── README.md
+│    │  
+│    └─── utils/
+│         └─── README.md
+│
+└─── test/
+     └─── README.md
 ```
 
 ## Objectives 
