@@ -26,3 +26,6 @@ C:.
 ## How to use 
 
 ## Notes 
+
+To-Do list : 
+- go buy all the stuff needed, list on the main readme

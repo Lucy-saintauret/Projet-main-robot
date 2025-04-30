@@ -29,3 +29,6 @@ The documentation folder contains all the documentation used for this project bu
 ## How to use 
 
 ## Notes 
+
+To-Do list : 
+- do some schematics and drawings 

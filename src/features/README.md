@@ -26,3 +26,13 @@ C:.
 ## How to use 
 
 ## Notes 
+
+This is the list of all the ideas the hand could be doing :  
+
+- close and open
+- peace sign 
+- wave 
+- rock, paper, cissors 
+- learn a handcheck gesture
+- begin to know sign language with one hand
+- translate text in sign language 
