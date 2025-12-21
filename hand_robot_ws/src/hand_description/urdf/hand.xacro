@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot name="hand" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Import de tous les composants -->
+  <xacro:include filename="$(find hand_description)/urdf/common.xacro"/>
+  <xacro:include filename="$(find hand_description)/urdf/index.xacro"/>
+
+  <!-- Instanciation de la base mobile -->
+  <xacro:index/>
+
+</robot>
