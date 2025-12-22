@@ -3,10 +3,12 @@
   <!-- middle of the hand -->
   <xacro:macro name="palm" params="parent *origin">
 
-    <!-- Joint entre base_footprint et palm -->
-    <joint name="palm_base_joint_fixed" type="fixed">
+    <!-- Joint entre wrist et palm -->
+    <joint name="wrist_palm_joint" type="revolute">
       <parent link="${parent}"/>
       <child link="palm_link"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="10.0" lower="${-90 * pi / 180}" upper="${90 * pi / 180}" velocity="0.3"/>
       <xacro:insert_block name="origin"/>
     </joint>
 
@@ -17,7 +19,7 @@
           <mesh filename="package://hand_description/meshes/palm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="white"/>
-        <origin xyz="0 0 0" rpy="${10 * pi / 180} ${-10 * pi / 180} ${65 * pi / 180}"/>
+        <origin xyz="-0.022 0.02 0.004" rpy="${90 * pi / 180} ${-153 * pi / 180} ${95.5 * pi / 180}"/>
       </visual>
       <collision>
         <geometry>
@@ -27,6 +29,65 @@
       </collision>
       <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
     </link>
+    
+    <!-- Joint entre palm et servo -->
+    <joint name="palm_servo_joint" type="fixed">
+      <parent link="palm_link"/>
+      <child link="servo_2_link"/>
+      <origin xyz="0.01 0.047 0.001" rpy="${90 * pi / 180} ${180 * pi / 180} ${0 * pi / 180}"/>
+    </joint>
+
+    <!-- Servo link -->
+    <link name="servo_2_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/Servo_Hitec_HS_645MG.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/Servo_Hitec_HS_645MG.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.1" radius="0.02" length="0.04"/>
+    </link>
+
+
+    <!-- Joint entre servo et horn (revolute pour rotation)-->
+    <joint name="servo_horn_2_joint" type="revolute">
+      <parent link="servo_2_link"/>
+      <child link="horn_2_link"/>
+      <origin xyz="0.01 0 0.045" rpy="${180 * pi / 180} 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="10.0" lower="${-180 * pi / 180}" upper="${180 * pi / 180}" velocity="0.3"/>
+    </joint>
+
+    <!-- Servo link -->
+    <link name="horn_2_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/servo_circle_horn.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+          <geometry>
+            <mesh filename="package://hand_description/meshes/servo_circle_horn.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.1" radius="0.02" length="0.04"/>
+    </link>
+
+    <!-- Color Gazebo for servo -->
+    <gazebo reference="horn_2_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
 
   </xacro:macro>
 </robot>

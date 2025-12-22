@@ -6,7 +6,7 @@
   <xacro:include filename="$(find hand_description)/urdf/ros2_control.xacro"/>
   <xacro:include filename="$(find hand_description)/urdf/forearm.xacro"/>
   <xacro:include filename="$(find hand_description)/urdf/wrist.xacro"/>
-  <!-- <xacro:include filename="$(find hand_description)/urdf/palm.xacro"/> -->
+  <xacro:include filename="$(find hand_description)/urdf/palm.xacro"/>
   <!-- <xacro:include filename="$(find hand_description)/urdf/index.xacro"/> -->
   <!-- <xacro:include filename="$(find hand_description)/urdf/middle.xacro"/> -->
 
@@ -20,14 +20,16 @@
     <origin xyz="0 0 0" rpy="0 ${90 * pi / 180} 0"/>
   </xacro:wrist>
 
+  <xacro:palm parent="wrist_link">
+    <origin xyz="0.041 -0.035 0.001" rpy="0 0 0"/>
+  </xacro:palm>
+
   <!-- ros2_control configuration -->
   <xacro:hand_ros2_control name="HandController" initial_positions_file=""/>
 
-  <!-- <xacro:palm parent="base_footprint">
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </xacro:palm>
   
-  <xacro:index parent="palm_link">
+  
+  <!-- <xacro:index parent="palm_link">
     <origin xyz="0 0.03 0.15" rpy="0 0 ${180 * pi / 180}"/>
   </xacro:index> -->
 
