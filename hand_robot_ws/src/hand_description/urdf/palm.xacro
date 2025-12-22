@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- middle of the hand -->
+  <xacro:macro name="palm" params="parent *origin">
+
+    <!-- Joint entre base_footprint et palm -->
+    <joint name="palm_base_joint_fixed" type="fixed">
+      <parent link="${parent}"/>
+      <child link="palm_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <!-- middle base left -->
+    <link name="palm_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/palm.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="0 0 0" rpy="${10 * pi / 180} ${-10 * pi / 180} ${65 * pi / 180}"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/palm.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+  </xacro:macro>
+</robot>

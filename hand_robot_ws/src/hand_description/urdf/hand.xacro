@@ -3,9 +3,36 @@
 
   <!-- Import de tous les composants -->
   <xacro:include filename="$(find hand_description)/urdf/common.xacro"/>
-  <xacro:include filename="$(find hand_description)/urdf/index.xacro"/>
+  <xacro:include filename="$(find hand_description)/urdf/ros2_control.xacro"/>
+  <xacro:include filename="$(find hand_description)/urdf/forearm.xacro"/>
+  <xacro:include filename="$(find hand_description)/urdf/wrist.xacro"/>
+  <!-- <xacro:include filename="$(find hand_description)/urdf/palm.xacro"/> -->
+  <!-- <xacro:include filename="$(find hand_description)/urdf/index.xacro"/> -->
+  <!-- <xacro:include filename="$(find hand_description)/urdf/middle.xacro"/> -->
 
-  <!-- Instanciation de la base mobile -->
-  <xacro:index/>
+  <link name="base_footprint"></link>
+
+  <xacro:forearm parent="base_footprint">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:forearm>
+
+  <xacro:wrist parent="horn_link">
+    <origin xyz="0 0 0" rpy="0 ${90 * pi / 180} 0"/>
+  </xacro:wrist>
+
+  <!-- ros2_control configuration -->
+  <xacro:hand_ros2_control name="HandController" initial_positions_file=""/>
+
+  <!-- <xacro:palm parent="base_footprint">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:palm>
+  
+  <xacro:index parent="palm_link">
+    <origin xyz="0 0.03 0.15" rpy="0 0 ${180 * pi / 180}"/>
+  </xacro:index> -->
+
+  <!-- <xacro:middle parent="base_footprint">
+    <origin xyz="0 0.03 0" rpy="0 0 0"/>
+  </xacro:middle> -->
 
 </robot>

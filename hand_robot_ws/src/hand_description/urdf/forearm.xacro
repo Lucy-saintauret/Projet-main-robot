@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- middle of the hand -->
+  <xacro:macro name="forearm" params="parent *origin">
+
+    <!-- Joint entre base_footprint et forearm -->
+    <joint name="forearm_base_joint_fixed" type="fixed">
+      <parent link="${parent}"/>
+      <child link="forearm_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <!-- Forearm link -->
+    <link name="forearm_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/forearm.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/forearm.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+    <!-- Color Gazebo for forearm -->
+    <gazebo reference="forearm_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- Joint entre forearm et servo -->
+    <joint name="forearm_servo_joint" type="fixed">
+      <parent link="forearm_link"/>
+      <child link="servo_link"/>
+      <origin xyz="-0.0724 -0.039 0.044" rpy="${90 * pi / 180} 0 ${-90 * pi / 180}"/>
+    </joint>
+
+    <!-- Servo link -->
+    <link name="servo_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/Servo_Hitec_HS_645MG.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/Servo_Hitec_HS_645MG.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.1" radius="0.02" length="0.04"/>
+    </link>
+
+    <!-- Color Gazebo for servo -->
+    <gazebo reference="servo_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
+
+    <!-- Joint entre servo et horn (revolute pour rotation)-->
+    <joint name="servo_horn_joint" type="revolute">
+      <parent link="servo_link"/>
+      <child link="horn_link"/>
+      <origin xyz="0.01 0 0.045" rpy="${180 * pi / 180} 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="10.0" lower="${-180 * pi / 180}" upper="${180 * pi / 180}" velocity="0.3"/>
+    </joint>
+
+    <!-- Servo link -->
+    <link name="horn_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/servo_circle_horn.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+          <geometry>
+            <mesh filename="package://hand_description/meshes/servo_circle_horn.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.1" radius="0.02" length="0.04"/>
+    </link>
+
+    <!-- Color Gazebo for servo -->
+    <gazebo reference="horn_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

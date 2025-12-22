@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:macro name="hand_ros2_control" params="name initial_positions_file">
+    
+    <ros2_control name="${name}" type="system">
+      
+      <!-- Hardware interface -->
+      <hardware>
+        <plugin>mock_components/GenericSystem</plugin>
+        <param name="mock_sensor_commands">false</param>
+        <param name="state_following_offset">0.0</param>
+      </hardware>
+      
+      <!-- Servo horn joint -->
+      <joint name="servo_horn_joint">
+        <command_interface name="position">
+          <param name="min">${-180 * pi / 180}</param>
+          <param name="max">${180 * pi / 180}</param>
+        </command_interface>
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity"/>
+      </joint>
+      
+    </ros2_control>
+    
+  </xacro:macro>
+  
+</robot>

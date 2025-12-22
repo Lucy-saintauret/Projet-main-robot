@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- middle of the hand -->
+  <xacro:macro name="wrist" params="parent *origin">
+
+    <!-- Joint entre forearm et wrist -->
+    <joint name="bearing_forearm_joint_fixed" type="fixed">
+      <parent link="${parent}"/>
+      <child link="bearing_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <!-- bearing link -->
+    <link name="bearing_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/bearing_25x42x11.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="0 0 -0.021" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/bearing_25x42x11.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+    <!-- Color Gazebo for forearm -->
+    <gazebo reference="forearm_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+
+  </xacro:macro>
+</robot>
