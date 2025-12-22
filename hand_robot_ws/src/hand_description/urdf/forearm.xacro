@@ -69,7 +69,7 @@
       <child link="horn_link"/>
       <origin xyz="0.01 0 0.045" rpy="${180 * pi / 180} 0 0"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${-180 * pi / 180}" upper="${180 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${-30 * pi / 180}" upper="${90 * pi / 180}" velocity="0.3"/>
     </joint>
 
     <!-- Servo link -->
