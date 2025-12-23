@@ -24,14 +24,17 @@
     <origin xyz="0.041 -0.033 0.001" rpy="${-90 * pi / 180} 0 0"/>
   </xacro:palm>
 
+  <!-- <xacro:index parent="palm_link">
+    <origin xyz="0 0.03 0.15" rpy="0 0 ${180 * pi / 180}"/>
+  </xacro:index> -->
+
+
   <!-- ros2_control configuration -->
   <xacro:hand_ros2_control name="HandController" initial_positions_file=""/>
 
   
   
-  <!-- <xacro:index parent="palm_link">
-    <origin xyz="0 0.03 0.15" rpy="0 0 ${180 * pi / 180}"/>
-  </xacro:index> -->
+  
 
   <!-- <xacro:middle parent="base_footprint">
     <origin xyz="0 0.03 0" rpy="0 0 0"/>

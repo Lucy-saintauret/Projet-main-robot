@@ -117,7 +117,7 @@
       <child link="sg90_arm_index_link"/>
       <origin xyz="0.0028 0.006 0.03" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${-70 * pi / 180}" upper="${50 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${20 * pi / 180}" upper="${-10 * pi / 180}" velocity="0.3"/>
     </joint>
 
     <!-- middle base left -->
@@ -138,6 +138,83 @@
       <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
     </link>
 
+    <!-- Joint entre palm et servo -->
+    <joint name="arm_steering_index_joint" type="revolute">
+      <parent link="sg90_arm_index_link"/>
+      <child link="steering_index_link"/>
+      <origin xyz="0.01 0.0 0.0" rpy="${0 * pi / 180} ${0 * pi / 180} ${-90 * pi / 180}"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="10.0" lower="${25 * pi / 180}" upper="${0 * pi / 180}" velocity="0.3"/>
+      <mimic joint="sg90_arm_index_joint" multiplier="-1" offset="${20 * pi / 180}"/>
+    </joint>
+
+    <!-- middle base left -->
+    <link name="steering_index_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="blue"/>
+        <origin xyz="0.003 0 0" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+    <!-- Joint entre palm et servo -->
+    <joint name="steering_rod_index_joint" type="fixed">
+      <parent link="steering_index_link"/>
+      <child link="rod_index_link"/>
+      <origin xyz="0.009 0.0 0.002" rpy="${0 * pi / 180} ${90 * pi / 180} ${0 * pi / 180}"/>
+    </joint>
+
+    <!-- middle base left -->
+    <link name="rod_index_link">
+      <visual>
+        <geometry>
+          <cylinder length="0.02" radius="0.0009"/>
+        </geometry>
+        <material name="gray"/>
+        <origin xyz="0.0 0 0.01" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+      </visual>
+      <collision>
+        <geometry>
+            <cylinder length="0.02" radius="0.0009"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+    <!-- Joint entre palm et servo -->
+    <joint name="steering_rod_end_index_joint" type="fixed">
+      <parent link="rod_index_link"/>
+      <child link="steering_end_index_link"/>
+      <origin xyz="0.0 0.0 0.02" rpy="${-90 * pi / 180} ${90 * pi / 180} ${0 * pi / 180}"/>
+    </joint>
+
+    <!-- middle base left -->
+    <link name="steering_end_index_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="blue"/>
+        <origin xyz="0.0 0 -0.002" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
 
     <!-- Joint entre palm et servo -->
     <joint name="palm_sg90_middle_joint" type="fixed">
@@ -171,7 +248,7 @@
       <child link="sg90_arm_middle_link"/>
       <origin xyz="0.0028 0.006 0.03" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${-70 * pi / 180}" upper="${50 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${20 * pi / 180}" upper="${-10 * pi / 180}" velocity="0.3"/>
     </joint>
 
     <!-- middle base left -->
@@ -186,6 +263,84 @@
       <collision>
         <geometry>
           <mesh filename="package://hand_description/meshes/SG90_arm.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+    <!-- Joint entre palm et servo -->
+    <joint name="arm_steering_middle_joint" type="revolute">
+      <parent link="sg90_arm_middle_link"/>
+      <child link="steering_middle_link"/>
+      <origin xyz="0.01 0.0 0.0" rpy="${0 * pi / 180} ${0 * pi / 180} ${-90 * pi / 180}"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="10.0" lower="${25 * pi / 180}" upper="${0 * pi / 180}" velocity="0.3"/>
+      <mimic joint="sg90_arm_middle_joint" multiplier="-1" offset="${20 * pi / 180}"/>
+    </joint>
+
+    <!-- middle base left -->
+    <link name="steering_middle_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="blue"/>
+        <origin xyz="0.003 0 0" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+    <!-- Joint entre palm et servo -->
+    <joint name="steering_rod_middle_joint" type="fixed">
+      <parent link="steering_middle_link"/>
+      <child link="rod_middle_link"/>
+      <origin xyz="0.009 0.0 0.002" rpy="${0 * pi / 180} ${90 * pi / 180} ${0 * pi / 180}"/>
+    </joint>
+
+    <!-- middle base left -->
+    <link name="rod_middle_link">
+      <visual>
+        <geometry>
+          <cylinder length="0.02" radius="0.0009"/>
+        </geometry>
+        <material name="gray"/>
+        <origin xyz="0.0 0 0.01" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+      </visual>
+      <collision>
+        <geometry>
+            <cylinder length="0.02" radius="0.0009"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+    <!-- Joint entre palm et servo -->
+    <joint name="steering_rod_end_middle_joint" type="fixed">
+      <parent link="rod_middle_link"/>
+      <child link="steering_end_middle_link"/>
+      <origin xyz="0.0 0.0 0.02" rpy="${-90 * pi / 180} ${90 * pi / 180} ${0 * pi / 180}"/>
+    </joint>
+
+    <!-- middle base left -->
+    <link name="steering_end_middle_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="blue"/>
+        <origin xyz="0.0 0 -0.002" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </collision>
@@ -224,7 +379,7 @@
       <child link="sg90_arm_ring_link"/>
       <origin xyz="0.0028 0.006 0.03" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${-70 * pi / 180}" upper="${50 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${20 * pi / 180}" upper="${-10 * pi / 180}" velocity="0.3"/>
     </joint>
 
     <!-- middle base left -->
@@ -245,6 +400,83 @@
       <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
     </link>
 
+    <!-- Joint entre palm et servo -->
+    <joint name="arm_steering_ring_joint" type="revolute">
+      <parent link="sg90_arm_ring_link"/>
+      <child link="steering_ring_link"/>
+      <origin xyz="0.01 0.0 0.0" rpy="${0 * pi / 180} ${0 * pi / 180} ${-90 * pi / 180}"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="10.0" lower="${25 * pi / 180}" upper="${0 * pi / 180}" velocity="0.3"/>
+      <mimic joint="sg90_arm_ring_joint" multiplier="-1" offset="${20 * pi / 180}"/>
+    </joint>
+
+    <!-- middle base left -->
+    <link name="steering_ring_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="blue"/>
+        <origin xyz="0.003 0 0" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+    <!-- Joint entre palm et servo -->
+    <joint name="steering_rod_ring_joint" type="fixed">
+      <parent link="steering_ring_link"/>
+      <child link="rod_ring_link"/>
+      <origin xyz="0.009 0.0 0.002" rpy="${0 * pi / 180} ${90 * pi / 180} ${0 * pi / 180}"/>
+    </joint>
+
+    <!-- middle base left -->
+    <link name="rod_ring_link">
+      <visual>
+        <geometry>
+          <cylinder length="0.02" radius="0.0009"/>
+        </geometry>
+        <material name="gray"/>
+        <origin xyz="0.0 0 0.01" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+      </visual>
+      <collision>
+        <geometry>
+            <cylinder length="0.02" radius="0.0009"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+    <!-- Joint entre palm et servo -->
+    <joint name="steering_rod_end_ring_joint" type="fixed">
+      <parent link="rod_ring_link"/>
+      <child link="steering_end_ring_link"/>
+      <origin xyz="0.0 0.0 0.02" rpy="${-90 * pi / 180} ${90 * pi / 180} ${0 * pi / 180}"/>
+    </joint>
+
+    <!-- middle base left -->
+    <link name="steering_end_ring_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="blue"/>
+        <origin xyz="0.0 0 -0.002" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
 
     <!-- Joint entre palm et servo -->
     <joint name="palm_sg90_pinky_joint" type="fixed">
@@ -278,7 +510,7 @@
       <child link="sg90_arm_pinky_link"/>
       <origin xyz="0.0028 0.006 0.03" rpy="${-3 * pi / 180} ${10 * pi / 180} ${92 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${-70 * pi / 180}" upper="${30 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${20 * pi / 180}" upper="${-10 * pi / 180}" velocity="0.3"/>
     </joint>
 
     <!-- middle base left -->
