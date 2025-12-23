@@ -89,7 +89,7 @@
     <joint name="palm_sg90_index_joint" type="fixed">
       <parent link="palm_link"/>
       <child link="sg90_index_link"/>
-      <origin xyz="0.077 0.002 0.0075" rpy="${180 * pi / 180} ${0 * pi / 180} ${-100 * pi / 180}"/>
+      <origin xyz="0.08 0.002 0.014" rpy="${170 * pi / 180} ${0 * pi / 180} ${-100 * pi / 180}"/>
     </joint>
 
     <!-- middle base left -->
@@ -144,8 +144,8 @@
       <child link="steering_index_link"/>
       <origin xyz="0.01 0.0 0.0" rpy="${0 * pi / 180} ${0 * pi / 180} ${-90 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${25 * pi / 180}" upper="${0 * pi / 180}" velocity="0.3"/>
-      <mimic joint="sg90_arm_index_joint" multiplier="-1" offset="${20 * pi / 180}"/>
+      <limit effort="10.0" lower="${30 * pi / 180}" upper="${0 * pi / 180}" velocity="0.3"/>
+      <mimic joint="sg90_arm_index_joint" multiplier="-1" offset="${10 * pi / 180}"/>
     </joint>
 
     <!-- middle base left -->
@@ -177,14 +177,14 @@
     <link name="rod_index_link">
       <visual>
         <geometry>
-          <cylinder length="0.02" radius="0.0009"/>
+          <cylinder length="0.018" radius="0.0009"/>
         </geometry>
         <material name="gray"/>
-        <origin xyz="0.0 0 0.01" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+        <origin xyz="0.0 0 0.009" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
       </visual>
       <collision>
         <geometry>
-            <cylinder length="0.02" radius="0.0009"/>
+            <cylinder length="0.018" radius="0.0009"/>
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </collision>
@@ -195,7 +195,7 @@
     <joint name="steering_rod_end_index_joint" type="fixed">
       <parent link="rod_index_link"/>
       <child link="steering_end_index_link"/>
-      <origin xyz="0.0 0.0 0.02" rpy="${-90 * pi / 180} ${90 * pi / 180} ${0 * pi / 180}"/>
+      <origin xyz="0.0 0.0 0.018" rpy="${-90 * pi / 180} ${90 * pi / 180} ${0 * pi / 180}"/>
     </joint>
 
     <!-- middle base left -->
