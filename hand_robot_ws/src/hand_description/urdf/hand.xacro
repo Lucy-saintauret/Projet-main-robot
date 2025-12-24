@@ -25,7 +25,7 @@
   </xacro:palm>
 
   <xacro:index parent="palm_link">
-    <origin xyz="-0.011 -0.018 0.0" rpy="${-90 * pi / 180} 0 ${0 * pi / 180}"/>
+    <origin xyz="0.104 -0.0206 -0.004" rpy="${190 * pi / 180} ${0 * pi / 180} ${160 * pi / 180}"/>
     <mimic joint="sg90_arm_index_joint" multiplier="1" offset="${-20 * pi / 180}"/>
   </xacro:index>
 
