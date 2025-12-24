@@ -4,75 +4,95 @@ Author : Lucy SAINT-AURET
 Starting date : 29/04/2025  
 Ending date : --/--/----  
 
-This is a personal project aiming to design and built a low-cost robotic hand using an Arduino microcontroller and simple materials. The goal is to explore key aspects of bionic prosthetics and embedded systems programming.
+This is a personal project aiming to design and built a robotic hand using ROS2, RViz and the Gazebo simulator. In this repository, you will find all the code for this project. 
 
 
 ## Table of contents
 
-1. [Project's structure](#projects-structure)
-2. [Objectives](#objectives)
-3. [Materials](#materials)
-4. [Planned features](#planned-features)
-5. [To-Do](#to-do)
+- [Robotic Hand Prototype](#robotic-hand-prototype)
+  - [Table of contents](#table-of-contents)
+  - [Demo and visuals](#demo-and-visuals)
+  - [Project overview](#project-overview)
+  - [Installation](#installation)
+  - [Usage](#usage)
 
-## Project's structure
+## Demo and visuals
+
+
+
+## Project overview
+
+This project was implemented on ROS2 Jazzy. 
+
+Here is the package `hand_description`, 
 
 ```
-projet-main-robot/
-├─── README.md
-│
-├─── docs/
-│    └─── README.md
-│
-├─── hardware/
-│    └─── README.md
-│ 
-├─── src/
-│    ├─── README.md
-│    │  
-│    ├─── core/
-│    │    └─── README.md
-│    │  
-│    ├─── features/
-│    │    └─── README.md
-│    │  
-│    └─── utils/
-│         └─── README.md
-│
-└─── test/
-     └─── README.md
+.
+└── hand_description
+    ├── CMakeLists.txt
+    ├── config
+    │   └── controllers.yaml
+    ├── include
+    │   └── hand_description
+    ├── launch
+    │   └── index.launch.py
+    ├── LICENSE
+    ├── meshes
+    │   ├── bearing_25x42x11.stl
+    │   ├── forearm.stl
+    │   ├── index_base_left.stl
+    │   ├── index_base_right.stl
+    │   ├── index_end.stl
+    │   ├── index_middle_left.stl
+    │   ├── index_middle_right.stl
+    │   ├── middle_base_left.stl
+    │   ├── middle_base_right.stl
+    │   ├── middle_end.stl
+    │   ├── middle_middle_left.stl
+    │   ├── middle_middle_right.stl
+    │   ├── palm.stl
+    │   ├── servo_circle_horn.stl
+    │   ├── Servo_Hitec_HS_645MG.stl
+    │   ├── SG90_arm.stl
+    │   ├── SG90.stl
+    │   ├── steeringlink_end_v2.stl
+    │   └── wrist.stl
+    ├── package.xml
+    ├── rviz
+    │   ├── config.rviz
+    │   └── rviz_config.rviz
+    ├── src
+    └── urdf
+        ├── common.xacro
+        ├── forearm.xacro
+        ├── hand.xacro
+        ├── index.xacro
+        ├── middle.xacro
+        ├── palm.xacro
+        ├── ros2_control.xacro
+        └── wrist.xacro
+
 ```
 
-## Objectives 
+## Installation 
 
-- Create a low-budget robotic hand prototype with finger articulation.
-- Use an Arduino board to control finger movement via servo motors.
-- Explore basic bio-inspired robotics concepts. 
-- Practice embedded programming and prototyping skills.
+Make sure you have ROS2, RViz and Gazebo installed in you machine.  
+Clone this repository.
+You will need to build this project : 
+```bash
+cd ~/hand_robot_ws
+source /opt/ros/jazzy/setup.bash
+colcon build 
+source install/setup.bash
+```
 
-## Materials 
+Then yoou can launch : 
+```bash
+ros2 launch hand_description demo.launch.py
+```
 
-- Arduino Uno board
-- Breadboard 
-- Jumper wires 
-- Servo motors 
-- Materials for the structure 
 
-## Planned features 
 
-- Finger articulation using servo motors
-- Simple movement sequences triggered by button or serial input
-- Modular code for easy testing of each component 
-- Optional : control interface
-
-## To-Do
-
-- Define finger mechanics and number of joints
-- Choose number and type of servo motors 
-- Build the hand skeleton 
-- Connect servos to Arduino 
-- Write basic code to control each servo 
-- Test finger movement individually
-- Create movement sequences 
+## Usage
 
 
