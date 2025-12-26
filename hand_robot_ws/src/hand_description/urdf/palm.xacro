@@ -379,7 +379,7 @@
       <child link="sg90_arm_ring_link"/>
       <origin xyz="0.0028 0.006 0.03" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${20 * pi / 180}" upper="${-10 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${20 * pi / 180}" upper="${-40 * pi / 180}" velocity="0.3"/>
     </joint>
 
     <!-- middle base left -->
