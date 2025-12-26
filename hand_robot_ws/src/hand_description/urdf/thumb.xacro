@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- thumb of the hand -->
+  <xacro:macro name="thumb" params="parent *origin *mimic">
+    <!-- Joint entre base_footprint et base_link -->
+    <joint name="thumb_base_joint_fixed" type="revolute">
+      <parent link="${parent}"/>
+      <child link="thumb_base_left_link"/>
+      <xacro:insert_block name="origin"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="10.0" lower="${-30 * pi / 180}" upper="${0 * pi / 180}" velocity="0.3"/>
+      <xacro:insert_block name="mimic"/>
+    </joint>
+    
+    <!-- thumb base left -->
+    <link name="thumb_base_left_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/thumb_base_left.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="-0.011 -0.0 -0.006" rpy="${1 * pi / 180} ${0 * pi / 180} 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/thumb_base_left.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+    
+
+    <!-- Color Gazebo for thumb base left -->
+    <gazebo reference="thumb_base_left_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+    
+    <joint name="thumb_base_joint" type="revolute">
+      <origin xyz="0.063 -0.0028 0.013" rpy="${180 * pi / 180} ${-38 * pi / 180} ${55 * pi / 180}"/>
+      <parent link="${parent}"/>
+      <child link="thumb_base_right_link"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="1000.0" lower="0.002" upper="-0.004" velocity="0.8"/>
+      <xacro:insert_block name="mimic"/>
+    </joint>
+
+    <!-- thumb base right -->
+    <link name="thumb_base_right_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/thumb_base_right.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="-0.016 0.001 0.0" rpy="${-90 * pi / 180} 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/thumb_base_right.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+    
+
+    <!-- Color Gazebo for thumb base right -->
+    <gazebo reference="thumb_base_right_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+    <joint name="thumb_middle_left_base_left_joint" type="revolute">
+      <origin xyz="-0.0322 -0.0042 0.002" rpy="${90 * pi / 180} ${-150 * pi / 180} ${0 * pi / 180}"/>
+      <parent link="thumb_base_left_link"/>
+      <child link="thumb_middle_left_link"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="1000.0" lower="${0 * pi / 180}" upper="${130 * pi / 180}" velocity="0.8"/>
+      <mimic joint="thumb_base_joint" multiplier="-1.6" offset="${100 * pi / 180}"/>
+    </joint>
+    
+    <!-- thumb base right -->
+    <link name="thumb_middle_left_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/thumb_middle_left.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="-0.0086 0.0 -0.0045" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/thumb_middle_left.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link> 
+    
+
+    <!-- Color Gazebo for thumb base right -->
+    <gazebo reference="thumb_middle_left_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+
+    <joint name="thumb_middle_right_base_left_joint" type="revolute">
+      <origin xyz="-0.0327 0.0003 0.008" rpy="${-90 * pi / 180} ${75 * pi / 180} 0"/>
+      <parent link="thumb_base_left_link"/>
+      <child link="thumb_middle_right_link"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="1000.0" lower="${0 * pi / 180}" upper="${130 * pi / 180}" velocity="0.8"/>
+      <mimic joint="thumb_base_joint" multiplier="1.6" offset="${20 * pi / 180}"/>
+    </joint>
+    
+    <!-- thumb base right -->
+    <link name="thumb_middle_right_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/thumb_middle_right.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="-0.009 0.00 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/thumb_middle_right.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+    
+
+    <!-- Color Gazebo for thumb base right -->
+    <gazebo reference="thumb_middle_left_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+    <joint name="thumb_end_middle_left_joint" type="revolute">
+      <origin xyz="-0.017 0 -0.003" rpy="${90 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+      <parent link="thumb_middle_left_link"/>
+      <child link="thumb_end_link"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="1000.0" lower="${0 * pi / 180}" upper="${80 * pi / 180}" velocity="0.8"/>
+      <mimic joint="thumb_base_joint" multiplier="-1.4" offset="${100 * pi / 180}"/>
+    </joint>
+    
+    <!-- thumb base right -->
+    <link name="thumb_end_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/thumb_end.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="0.016 -0.002 -0.0058" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://hand_description/meshes/thumb_end.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+    
+
+    <!-- Color Gazebo for thumb base right -->
+    <gazebo reference="thumb_middle_left_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+  </xacro:macro>
+</robot>
