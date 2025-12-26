@@ -7,9 +7,11 @@
   <xacro:include filename="$(find hand_description)/urdf/forearm.xacro"/>
   <xacro:include filename="$(find hand_description)/urdf/wrist.xacro"/>
   <xacro:include filename="$(find hand_description)/urdf/palm.xacro"/>
+  <!-- <xacro:include filename="$(find hand_description)/urdf/thumb.xacro"/> -->
   <xacro:include filename="$(find hand_description)/urdf/index.xacro"/>
-  <!-- <xacro:include filename="$(find hand_description)/urdf/middle.xacro"/> -->
+  <xacro:include filename="$(find hand_description)/urdf/middle_finger.xacro"/>
   <xacro:include filename="$(find hand_description)/urdf/ring_finger.xacro"/>
+  <!-- <xacro:include filename="$(find hand_description)/urdf/pinky_finger.xacro"/> -->
 
   <link name="base_footprint"></link>
 
@@ -25,21 +27,30 @@
     <origin xyz="0.041 -0.033 0.001" rpy="${-90 * pi / 180} 0 0"/>
   </xacro:palm>
 
+  <!-- <xacro:thumb parent="palm_link">
+    <origin xyz="0.116 0.042 -0.014" rpy="${190 * pi / 180} ${0 * pi / 180} ${180  * pi / 180}"/>
+    <mimic joint="sg90_arm_thumb_joint" multiplier="1" offset="${-20 * pi / 180}"/>
+  </xacro:thumb> -->
+
   <xacro:index parent="palm_link">
     <origin xyz="0.104 -0.0206 -0.004" rpy="${190 * pi / 180} ${0 * pi / 180} ${160 * pi / 180}"/>
-    <mimic joint="sg90_arm_index_joint" multiplier="1" offset="${-20 * pi / 180}"/>
+    <mimic joint="sg90_arm_index_joint" multiplier="1.2" offset="${-20 * pi / 180}"/>
   </xacro:index>
 
-  <!-- <xacro:middle parent="palm_link">
-    <origin xyz="0.116 0.042 -0.014" rpy="${190 * pi / 180} ${0 * pi / 180} ${180  * pi / 180}"/>
-    <mimic joint="sg90_arm_index_joint" multiplier="1" offset="${-20 * pi / 180}"/>
-  </xacro:middle> -->
-
-
+  <xacro:middle parent="palm_link">
+    <origin xyz="0.114 0.007 -0.011" rpy="${185 * pi / 180} ${0 * pi / 180} ${170  * pi / 180}"/>
+    <mimic joint="sg90_arm_middle_joint" multiplier="1.2" offset="${-20 * pi / 180}"/>
+  </xacro:middle>
+1
   <xacro:ring parent="palm_link">
-    <origin xyz="0.116 0.042 -0.014" rpy="${190 * pi / 180} ${0 * pi / 180} ${180 * pi / 180}"/>
-    <mimic joint="sg90_arm_ring_joint" multiplier="1" offset="${-20 * pi / 180}"/>
+    <origin xyz="0.116 0.0388 -0.014" rpy="${180 * pi / 180} ${0 * pi / 180} ${180 * pi / 180}"/>
+    <mimic joint="sg90_arm_ring_joint" multiplier="1.2" offset="${-20 * pi / 180}"/>
   </xacro:ring>
+
+  <!-- <xacro:pinky parent="palm_link">
+    <origin xyz="0.116 0.042 -0.014" rpy="${190 * pi / 180} ${0 * pi / 180} ${180  * pi / 180}"/>
+    <mimic joint="sg90_arm_pinky_joint" multiplier="1" offset="${-20 * pi / 180}"/>
+  </xacro:pinky> -->
 
   <!-- ros2_control configuration -->
   <xacro:hand_ros2_control name="HandController" initial_positions_file=""/>

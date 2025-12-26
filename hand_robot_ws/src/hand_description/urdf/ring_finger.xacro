@@ -37,7 +37,7 @@
     </gazebo>
     
     <joint name="ring_base_joint" type="revolute">
-      <origin xyz="0.114 0.0424 -0.003" rpy="${190 * pi / 180} ${-29 * pi / 180} ${175 * pi / 180}"/>
+      <origin xyz="0.114 0.0374 -0.003" rpy="${180 * pi / 180} ${-29 * pi / 180} ${180 * pi / 180}"/>
       <parent link="${parent}"/>
       <child link="ring_base_right_link"/>
       <axis xyz="0 1 0"/>
@@ -104,7 +104,7 @@
 
 
     <joint name="ring_middle_right_base_left_joint" type="revolute">
-      <origin xyz="-0.0515 0.0005 0.012" rpy="${-90 * pi / 180} ${115 * pi / 180} 0"/>
+      <origin xyz="-0.0515 -0.0005 0.012" rpy="${-90 * pi / 180} ${115 * pi / 180} 0"/>
       <parent link="ring_base_left_link"/>
       <child link="ring_middle_right_link"/>
       <axis xyz="0 0 1"/>

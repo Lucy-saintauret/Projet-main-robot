@@ -1,12 +1,15 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- middle of the hand -->
-  <xacro:macro name="middle" params="parent *origin">
+  <xacro:macro name="middle" params="parent *origin *mimic">
     <!-- Joint entre base_footprint et base_link -->
-    <joint name="middle_base_joint_fixed" type="fixed">
+    <joint name="middle_base_joint_fixed" type="revolute">
       <parent link="${parent}"/>
       <child link="middle_base_left_link"/>
       <xacro:insert_block name="origin"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="10.0" lower="${-30 * pi / 180}" upper="${0 * pi / 180}" velocity="0.3"/>
+      <xacro:insert_block name="mimic"/>
     </joint>
     
     <!-- middle base left -->
@@ -16,7 +19,7 @@
           <mesh filename="package://hand_description/meshes/middle_base_left.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="white"/>
-        <origin xyz="0.004 0.028 0" rpy="0 0 0"/>
+        <origin xyz="0.0085 0.014 -0.0055" rpy="0 0 0"/>
       </visual>
       <collision>
         <geometry>
@@ -33,11 +36,13 @@
       <material>Gazebo/White</material>
     </gazebo>
     
-    <joint name="middle_base_joint" type="prismatic">
-      <origin xyz="-0.03 0.0147 0.01" rpy="${-90 * pi / 180} ${28 * pi / 180} 0"/>
-      <parent link="middle_base_left_link"/>
+    <joint name="middle_base_joint" type="revolute">
+      <origin xyz="0.111 0.0079 -0.001" rpy="${185 * pi / 180} ${-29 * pi / 180} ${167 * pi / 180}"/>
+      <parent link="${parent}"/>
       <child link="middle_base_right_link"/>
+      <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="0.002" upper="-0.004" velocity="0.8"/>
+      <xacro:insert_block name="mimic"/>
     </joint>
 
     <!-- middle base right -->
@@ -47,7 +52,7 @@
           <mesh filename="package://hand_description/meshes/middle_base_right.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="white"/>
-        <origin xyz="-0.03 -0.0209 0" rpy="0 0 0"/>
+        <origin xyz="-0.06 0.001 0.0212" rpy="${-90 * pi / 180} 0 0"/>
       </visual>
       <collision>
         <geometry>
@@ -62,15 +67,15 @@
     <!-- Color Gazebo for middle base right -->
     <gazebo reference="middle_base_right_link">
       <material>Gazebo/White</material>
-    </gazebo>
+    </gazebo> 
 
     <joint name="middle_middle_left_base_left_joint" type="revolute">
-      <origin xyz="-0.056 0.0103 0.0108" rpy="${90 * pi / 180} ${45 * pi / 180} 0"/>
+      <origin xyz="-0.0516 -0.0038 0.005" rpy="${90 * pi / 180} ${70 * pi / 180} 0"/>
       <parent link="middle_base_left_link"/>
       <child link="middle_middle_left_link"/>
       <axis xyz="0 0 1"/>
-      <limit effort="1000.0" lower="2" upper="0" velocity="0.8"/>
-      <mimic joint="middle_base_joint" multiplier="-200" offset="${60 * pi / 180}"/>
+      <limit effort="1000.0" lower="${0 * pi / 180}" upper="${130 * pi / 180}" velocity="0.8"/>
+      <mimic joint="middle_base_joint" multiplier="-1.6" offset="${60 * pi / 180}"/>
     </joint>
     
     <!-- middle base right -->
@@ -99,12 +104,12 @@
 
 
     <joint name="middle_middle_right_base_left_joint" type="revolute">
-      <origin xyz="-0.0555 0.0147 0.0167" rpy="${-90 * pi / 180} ${90 * pi / 180} 0"/>
+      <origin xyz="-0.0515 0.0009 0.012" rpy="${-90 * pi / 180} ${115 * pi / 180} 0"/>
       <parent link="middle_base_left_link"/>
       <child link="middle_middle_right_link"/>
       <axis xyz="0 0 1"/>
-      <limit effort="1000.0" lower="2" upper="0" velocity="0.8"/>
-      <mimic joint="middle_base_joint" multiplier="200" offset="${60 * pi / 180}"/>
+      <limit effort="1000.0" lower="${0 * pi / 180}" upper="${130 * pi / 180}" velocity="0.8"/>
+      <mimic joint="middle_base_joint" multiplier="1.6" offset="${60 * pi / 180}"/>
     </joint>
     
     <!-- middle base right -->
@@ -131,14 +136,14 @@
       <material>Gazebo/White</material>
     </gazebo>
 
-    <joint name="middle_end_middle_left_joint" type="revolute">
-      <origin xyz="-0.031 0 -0.003" rpy="${90 * pi / 180} 0 ${180 * pi / 180}"/>
-      <parent link="middle_middle_left_link"/>
-      <child link="middle_end_link"/>
-      <axis xyz="0 1 0"/>
-      <limit effort="1000.0" lower="2" upper="0" velocity="0.8"/>
-      <mimic joint="middle_base_joint" multiplier="-200" offset="${60 * pi / 180}"/>
-    </joint>
+      <joint name="middle_end_middle_left_joint" type="revolute">
+        <origin xyz="-0.0378 0 -0.003" rpy="${90 * pi / 180} 0 ${140 * pi / 180}"/>
+        <parent link="middle_middle_left_link"/>
+        <child link="middle_end_link"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="1000.0" lower="${0 * pi / 180}" upper="${80 * pi / 180}" velocity="0.8"/>
+        <mimic joint="middle_base_joint" multiplier="-1.4" offset="${60 * pi / 180}"/>
+      </joint>
     
     <!-- middle base right -->
     <link name="middle_end_link">
@@ -147,7 +152,7 @@
           <mesh filename="package://hand_description/meshes/middle_end.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="white"/>
-        <origin xyz="-0.0241 -0.0156 -0.0058" rpy="0 0 0"/>
+        <origin xyz="0.041 -0.0156 -0.0058" rpy="0 0 0"/>
       </visual>
       <collision>
         <geometry>

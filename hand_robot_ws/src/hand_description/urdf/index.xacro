@@ -104,7 +104,7 @@
 
 
     <joint name="index_middle_right_base_left_joint" type="revolute">
-      <origin xyz="-0.0515 0.0005 0.012" rpy="${-90 * pi / 180} ${115 * pi / 180} 0"/>
+      <origin xyz="-0.0515 -0.0005 0.012" rpy="${-90 * pi / 180} ${115 * pi / 180} 0"/>
       <parent link="index_base_left_link"/>
       <child link="index_middle_right_link"/>
       <axis xyz="0 0 1"/>
