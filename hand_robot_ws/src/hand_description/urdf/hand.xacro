@@ -16,7 +16,7 @@
   <link name="base_footprint"></link>
 
   <xacro:forearm parent="base_footprint">
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 ${90 * pi / 180} 0"/>
   </xacro:forearm>
 
   <xacro:wrist parent="horn_link">
@@ -49,16 +49,11 @@
 
   <xacro:pinky parent="palm_link">
     <origin xyz="0.114 0.07 -0.015" rpy="${175 * pi / 180} ${0 * pi / 180} ${190 * pi / 180}"/>
-    <mimic joint="sg90_arm_pinky_joint" multiplier="-1" offset="${-20 * pi / 180}"/>
+    <mimic joint="sg90_arm_pinky_joint" multiplier="-1.2" offset="${-20 * pi / 180}"/>
   </xacro:pinky>
 
   <!-- ros2_control configuration -->
   <xacro:hand_ros2_control name="HandController" initial_positions_file=""/>
 
-  
-  
-  
-
-  
 
 </robot>
