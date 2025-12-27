@@ -17,7 +17,7 @@
           <mesh filename="package://hand_description/meshes/forearm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="white"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.044 0 0.13" rpy="0 ${90 * pi / 180} 0"/>
       </visual>
       <collision>
         <geometry>
@@ -37,7 +37,7 @@
     <joint name="forearm_servo_joint" type="fixed">
       <parent link="forearm_link"/>
       <child link="servo_link"/>
-      <origin xyz="-0.0724 -0.039 0.044" rpy="${90 * pi / 180} 0 ${-90 * pi / 180}"/>
+      <origin xyz="0.0 -0.039 0.2" rpy="${0 * pi / 180} 0 ${-90 * pi / 180}"/>
     </joint>
 
     <!-- Servo link -->
