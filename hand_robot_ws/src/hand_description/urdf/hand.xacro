@@ -4,6 +4,7 @@
   <!-- Import de tous les composants -->
   <xacro:include filename="$(find hand_description)/urdf/common.xacro"/>
   <xacro:include filename="$(find hand_description)/urdf/ros2_control.xacro"/>
+  <xacro:include filename="$(find hand_description)/urdf/base.xacro"/>
   <xacro:include filename="$(find hand_description)/urdf/forearm.xacro"/>
   <xacro:include filename="$(find hand_description)/urdf/wrist.xacro"/>
   <xacro:include filename="$(find hand_description)/urdf/palm.xacro"/>
@@ -15,8 +16,12 @@
 
   <link name="base_footprint"></link>
 
-  <xacro:forearm parent="base_footprint">
+  <xacro:base parent="base_footprint">
     <origin xyz="0 0 0" rpy="0 ${0 * pi / 180} 0"/>
+  </xacro:base>
+
+  <xacro:forearm parent="base_rotate_link">
+    <origin xyz="0 0.05 0.03" rpy="0 ${0 * pi / 180} 0"/>
   </xacro:forearm>
 
   <xacro:wrist parent="horn_link">

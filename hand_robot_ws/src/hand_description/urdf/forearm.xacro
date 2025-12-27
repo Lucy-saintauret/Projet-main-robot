@@ -4,10 +4,12 @@
   <xacro:macro name="forearm" params="parent *origin">
 
     <!-- Joint entre base_footprint et forearm -->
-    <joint name="forearm_base_joint_fixed" type="fixed">
+    <joint name="forearm_base_joint" type="revolute">
       <parent link="${parent}"/>
       <child link="forearm_link"/>
       <xacro:insert_block name="origin"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="10.0" lower="${-90 * pi / 180}" upper="${90 * pi / 180}" velocity="0.3"/>
     </joint>
 
     <!-- Forearm link -->

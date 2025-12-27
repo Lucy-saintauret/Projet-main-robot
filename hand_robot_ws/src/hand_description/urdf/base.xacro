@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- base for the forearm -->
+  <xacro:macro name="base" params="parent *origin">
+
+   <!-- Joint entre base_footprint et forearm -->
+    <joint name="base_joint_fixed" type="fixed">
+      <parent link="${parent}"/>
+      <child link="base_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <!-- Forearm link -->
+    <link name="base_link">
+      <visual>
+        <geometry>
+          <cylinder radius="0.08" length="0.02"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="0 0 0" rpy="0 ${0 * pi / 180} 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="0.08" length="0.02"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+    <!-- Color Gazebo for forearm -->
+    <gazebo reference="base_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- Joint entre base_footprint et forearm -->
+    <joint name="base_rotate_joint" type="continuous">
+      <origin xyz="0 0 0.04" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
+      <parent link="base_link"/>
+      <child link="base_rotate_link"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <!-- Forearm link -->
+    <link name="base_rotate_link">
+      <visual>
+        <geometry>
+          <cylinder radius="0.044" length="0.1"/>
+        </geometry>
+        <material name="white"/>
+        <origin xyz="0 0 0" rpy="0 ${0 * pi / 180} 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="0.08" length="0.02"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+    </link>
+
+    <!-- Color Gazebo for forearm -->
+    <gazebo reference="forearm_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+  </xacro:macro>
+</robot>
