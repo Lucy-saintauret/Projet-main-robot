@@ -19,7 +19,7 @@
           <mesh filename="package://hand_description/meshes/pinky_base_left.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="white"/>
-        <origin xyz="0.004 -0.0148 -0.005" rpy="0 ${-1 * pi / 180} 0"/>
+        <origin xyz="-0.012 -0.0006 -0.005" rpy="0 ${-1 * pi / 180} ${180 * pi / 180}"/>
       </visual>
       <collision>
         <geometry>
@@ -37,7 +37,7 @@
     </gazebo>
     
     <joint name="pinky_base_joint" type="revolute">
-      <origin xyz="0.114 0.0374 -0.003" rpy="${180 * pi / 180} ${-29 * pi / 180} ${180 * pi / 180}"/>
+      <origin xyz="0.111 0.067 -0.005" rpy="${175 * pi / 180} ${-40 * pi / 180} ${195 * pi / 180}"/>
       <parent link="${parent}"/>
       <child link="pinky_base_right_link"/>
       <axis xyz="0 1 0"/>
@@ -52,7 +52,7 @@
           <mesh filename="package://hand_description/meshes/pinky_base_right.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="white"/>
-        <origin xyz="-0.058 0.001 -0.0212" rpy="${-90 * pi / 180} 0 0"/>
+        <origin xyz="-0.016 0.001 -0.0" rpy="${-90 * pi / 180} 0 0"/>
       </visual>
       <collision>
         <geometry>
@@ -69,17 +69,17 @@
       <material>Gazebo/White</material>
     </gazebo>
 
-    <joint name="pinky_middle_left_base_left_joint" type="revolute">
+    <!-- <joint name="pinky_middle_left_base_left_joint" type="revolute">
       <origin xyz="-0.052 -0.005 0.006" rpy="${90 * pi / 180} ${70 * pi / 180} 0"/>
       <parent link="pinky_base_left_link"/>
       <child link="pinky_middle_left_link"/>
       <axis xyz="0 0 1"/>
       <limit effort="1000.0" lower="${0 * pi / 180}" upper="${130 * pi / 180}" velocity="0.8"/>
       <mimic joint="pinky_base_joint" multiplier="-1.6" offset="${60 * pi / 180}"/>
-    </joint>
+    </joint> -->
     
     <!-- pinky base right -->
-    <link name="pinky_middle_left_link">
+    <!-- <link name="pinky_middle_left_link">
       <visual>
         <geometry>
           <mesh filename="package://hand_description/meshes/pinky_middle_left.stl" scale="0.001 0.001 0.001"/>
@@ -94,26 +94,26 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </collision>
       <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
-    </link> 
+    </link>  -->
     
 
     <!-- Color Gazebo for pinky base right -->
-    <gazebo reference="pinky_middle_left_link">
+    <!-- <gazebo reference="pinky_middle_left_link">
       <material>Gazebo/White</material>
-    </gazebo>
+    </gazebo> -->
 
 
-    <joint name="pinky_middle_right_base_left_joint" type="revolute">
+    <!-- <joint name="pinky_middle_right_base_left_joint" type="revolute">
       <origin xyz="-0.0515 -0.0005 0.012" rpy="${-90 * pi / 180} ${115 * pi / 180} 0"/>
       <parent link="pinky_base_left_link"/>
       <child link="pinky_middle_right_link"/>
       <axis xyz="0 0 1"/>
       <limit effort="1000.0" lower="${0 * pi / 180}" upper="${130 * pi / 180}" velocity="0.8"/>
       <mimic joint="pinky_base_joint" multiplier="1.6" offset="${60 * pi / 180}"/>
-    </joint>
+    </joint> -->
     
     <!-- pinky base right -->
-    <link name="pinky_middle_right_link">
+    <!-- <link name="pinky_middle_right_link">
       <visual>
         <geometry>
           <mesh filename="package://hand_description/meshes/pinky_middle_right.stl" scale="0.001 0.001 0.001"/>
@@ -128,25 +128,25 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </collision>
       <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
-    </link>
+    </link> -->
     
 
     <!-- Color Gazebo for pinky base right -->
-    <gazebo reference="pinky_middle_left_link">
+    <!-- <gazebo reference="pinky_middle_left_link">
       <material>Gazebo/White</material>
-    </gazebo>
+    </gazebo> -->
 
-    <joint name="pinky_end_middle_left_joint" type="revolute">
+    <!-- <joint name="pinky_end_middle_left_joint" type="revolute">
       <origin xyz="-0.031 0 -0.003" rpy="${90 * pi / 180} ${0 * pi / 180} ${140 * pi / 180}"/>
       <parent link="pinky_middle_left_link"/>
       <child link="pinky_end_link"/>
       <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="${0 * pi / 180}" upper="${80 * pi / 180}" velocity="0.8"/>
       <mimic joint="pinky_base_joint" multiplier="-1.4" offset="${60 * pi / 180}"/>
-    </joint>
+    </joint> -->
     
     <!-- pinky base right -->
-    <link name="pinky_end_link">
+    <!-- <link name="pinky_end_link">
       <visual>
         <geometry>
           <mesh filename="package://hand_description/meshes/pinky_end.stl" scale="0.001 0.001 0.001"/>
@@ -161,13 +161,13 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </collision>
       <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
-    </link>
+    </link> -->
     
 
     <!-- Color Gazebo for pinky base right -->
-    <gazebo reference="pinky_middle_left_link">
+    <!-- <gazebo reference="pinky_middle_left_link">
       <material>Gazebo/White</material>
-    </gazebo>
+    </gazebo> -->
 
   </xacro:macro>
 </robot>
