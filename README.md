@@ -1,7 +1,6 @@
 # Robotic Hand Prototype
 
-Author: Lucy SAINT-AURET  
-Start date: 29/04/2025  
+Author: Lucy SAINT-AURET   
 Status: Work in progress
 
 This public project documents the design and simulation of a robotic hand using ROS 2 (Jazzy), RViz and the Gazebo simulator. In the long term, the goal is to build a sign-language translator robot with two arms that can translate a provided sentence into sign language. The current, partial objective is to design a single hand and make it perform simple, well-controlled motions in simulation.
