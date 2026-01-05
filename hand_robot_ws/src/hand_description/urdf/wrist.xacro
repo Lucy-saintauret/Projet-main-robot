@@ -23,15 +23,15 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/bearing_25x42x11.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 -0.021" rpy="0 0 0"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.02" radius="0.08" length="0.25"/>
     </link>
 
-    <!-- Color Gazebo for forearm -->
-    <gazebo reference="forearm_link">
+    <gazebo reference="bearing_link">
       <material>Gazebo/White</material>
     </gazebo>
+
 
     <!-- Joint entre bearing et wrist -->
     <joint name="wrist_bearing_joint" type="fixed">
@@ -53,9 +53,9 @@
           <geometry>
             <mesh filename="package://hand_description/meshes/wrist.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.005 0.072 -0.071" rpy="0 ${90 * pi / 180} 0"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.1" radius="0.02" length="0.04"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.02" length="0.04"/>
     </link>
 
     <!-- Color Gazebo for wrist -->

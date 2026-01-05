@@ -1,0 +1,53 @@
+# MoveIt uses this configuration for controller management
+
+moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+moveit_simple_controller_manager:
+  controller_names:
+    - forearm_group_controller
+    - index_group_controller
+    - middle_group_controller
+    - ring_group_controller
+    - pinky_group_controller
+    - thumb_group_controller
+    - arm_group_controller
+
+  forearm_group_controller:
+    type: FollowJointTrajectory
+    joints:
+      - base_rotate_joint
+      - forearm_base_joint
+      - servo_horn_joint
+      - servo_horn_2_joint
+  index_group_controller:
+    type: FollowJointTrajectory
+    joints:
+      - sg90_arm_index_joint
+  middle_group_controller:
+    type: FollowJointTrajectory
+    joints:
+      - sg90_arm_middle_joint
+  ring_group_controller:
+    type: FollowJointTrajectory
+    joints:
+      - sg90_arm_ring_joint
+  pinky_group_controller:
+    type: FollowJointTrajectory
+    joints:
+      - sg90_arm_pinky_joint
+  thumb_group_controller:
+    type: FollowJointTrajectory
+    joints:
+      - sg90_arm_thumb_joint
+  arm_group_controller:
+    type: FollowJointTrajectory
+    joints:
+      - base_rotate_joint
+      - forearm_base_joint
+      - servo_horn_joint
+      - servo_horn_2_joint
+      - sg90_arm_index_joint
+      - sg90_arm_middle_joint
+      - sg90_arm_pinky_joint
+      - sg90_arm_ring_joint
+      - sg90_arm_thumb_joint

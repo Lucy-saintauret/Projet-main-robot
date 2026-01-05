@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: hand_description
+    relative_path: urdf/hand.urdf.xacro
+  srdf:
+    relative_path: config/hand.srdf
+  package_settings:
+    author_name: Lucy Saint-Auret
+    author_email: lucy.st-auret@cpe.fr
+    generated_timestamp: 1767482224
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity

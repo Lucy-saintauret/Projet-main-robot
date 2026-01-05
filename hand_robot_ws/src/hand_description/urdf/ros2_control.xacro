@@ -1,31 +1,97 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   
-  <xacro:macro name="hand_ros2_control" params="name initial_positions_file">
+  <ros2_control name="hand_controller" type="system">
     
-    <ros2_control name="${name}" type="system">
-      
-      <!-- Hardware interface -->
-      <hardware>
-        <plugin>mock_components/GenericSystem</plugin>
-        <param name="mock_sensor_commands">false</param>
-        <param name="state_following_offset">0.0</param>
-      </hardware>
-      
-      <!-- Servo horn joint -->
-      <joint name="servo_horn_joint">
-        <command_interface name="position">
-          <param name="min">${-180 * pi / 180}</param>
-          <param name="max">${180 * pi / 180}</param>
-        </command_interface>
-        <state_interface name="position">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-        <state_interface name="velocity"/>
-      </joint>
-      
-    </ros2_control>
+    <!-- Hardware interface pour Gazebo -->
+    <hardware>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
     
-  </xacro:macro>
+    <!-- Base rotation joint -->
+    <joint name="base_rotate_joint">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <!-- Forearm joint -->
+    <joint name="forearm_base_joint">
+      <command_interface name="position">
+        <param name="min">${-90 * pi / 180}</param>
+        <param name="max">${90 * pi / 180}</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <!-- Servo horn joint (main wrist rotation) -->
+    <joint name="servo_horn_joint">
+      <command_interface name="position">
+        <param name="min">${-30 * pi / 180}</param>
+        <param name="max">${90 * pi / 180}</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <!-- Palm servo joints (control fingers base) -->
+    <joint name="sg90_arm_thumb_joint">
+      <command_interface name="position">
+        <param name="min">${-10 * pi / 180}</param>
+        <param name="max">${40 * pi / 180}</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="sg90_arm_index_joint">
+      <command_interface name="position">
+        <param name="min">${-40 * pi / 180}</param>
+        <param name="max">${20 * pi / 180}</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="sg90_arm_middle_joint">
+      <command_interface name="position">
+        <param name="min">${-40 * pi / 180}</param>
+        <param name="max">${20 * pi / 180}</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="sg90_arm_ring_joint">
+      <command_interface name="position">
+        <param name="min">${-40 * pi / 180}</param>
+        <param name="max">${20 * pi / 180}</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="sg90_arm_pinky_joint">
+      <command_interface name="position">
+        <param name="min">${-20 * pi / 180}</param>
+        <param name="max">${40 * pi / 180}</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    
+  </ros2_control>
+  
+  <!-- Plugin Gazebo pour ros2_control -->
+  <gazebo>
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>$(find hand_description)/config/controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
+  
   
 </robot>

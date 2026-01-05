@@ -1,0 +1,12 @@
+# Default initial positions for hand's ros2_control fake system
+
+initial_positions:
+  base_rotate_joint: 0
+  forearm_base_joint: 0
+  servo_horn_2_joint: 0
+  servo_horn_joint: 0
+  sg90_arm_index_joint: 0
+  sg90_arm_middle_joint: 0
+  sg90_arm_pinky_joint: 0
+  sg90_arm_ring_joint: 0
+  sg90_arm_thumb_joint: 0

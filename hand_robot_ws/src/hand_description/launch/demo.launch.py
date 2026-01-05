@@ -14,7 +14,7 @@ def generate_launch_description():
     
     # Chemins des fichiers
     pkg_share = get_package_share_directory('hand_description')
-    xacro_file = os.path.join(pkg_share, 'urdf', 'hand.xacro')
+    xacro_file = os.path.join(pkg_share, 'urdf', 'hand.urdf.xacro')
     rviz_config = os.path.join(pkg_share, 'rviz', 'config.rviz')
     controllers_config = os.path.join(pkg_share, 'config', 'controllers.yaml')
     # world_file = os.path.join(pkg_share, 'worlds', 'luna_world.sdf')

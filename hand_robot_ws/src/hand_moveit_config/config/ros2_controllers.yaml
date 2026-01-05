@@ -1,0 +1,117 @@
+# This config file is used by ros2_control
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    forearm_group_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    index_group_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    middle_group_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    ring_group_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    pinky_group_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    thumb_group_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    arm_group_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+forearm_group_controller:
+  ros__parameters:
+    joints:
+      - base_rotate_joint
+      - forearm_base_joint
+      - servo_horn_joint
+      - servo_horn_2_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    allow_nonzero_velocity_at_trajectory_end: true
+index_group_controller:
+  ros__parameters:
+    joints:
+      - sg90_arm_index_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    allow_nonzero_velocity_at_trajectory_end: true
+middle_group_controller:
+  ros__parameters:
+    joints:
+      - sg90_arm_middle_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    allow_nonzero_velocity_at_trajectory_end: true
+ring_group_controller:
+  ros__parameters:
+    joints:
+      - sg90_arm_ring_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    allow_nonzero_velocity_at_trajectory_end: true
+pinky_group_controller:
+  ros__parameters:
+    joints:
+      - sg90_arm_pinky_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    allow_nonzero_velocity_at_trajectory_end: true
+thumb_group_controller:
+  ros__parameters:
+    joints:
+      - sg90_arm_thumb_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    allow_nonzero_velocity_at_trajectory_end: true
+arm_group_controller:
+  ros__parameters:
+    joints:
+      - base_rotate_joint
+      - forearm_base_joint
+      - servo_horn_joint
+      - servo_horn_2_joint
+      - sg90_arm_index_joint
+      - sg90_arm_middle_joint
+      - sg90_arm_pinky_joint
+      - sg90_arm_ring_joint
+      - sg90_arm_thumb_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    allow_nonzero_velocity_at_trajectory_end: true

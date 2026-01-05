@@ -1,5 +1,16 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Macro pour inertie réaliste d'un doigt -->
+  <xacro:macro name="finger_inertia" params="mass">
+    <inertial>
+      <mass value="${mass}"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="${mass * 0.001}" ixy="0.0" ixz="0.0"
+               iyy="${mass * 0.001}" iyz="0.0"
+               izz="${mass * 0.001}"/>
+    </inertial>
+  </xacro:macro>
   <!-- Index of the hand -->
   <xacro:macro name="index" params="parent *origin *mimic">
     <!-- Joint entre base_footprint et base_link -->
@@ -8,7 +19,8 @@
       <child link="index_base_left_link"/>
       <xacro:insert_block name="origin"/>
       <axis xyz="0 1 0"/>
-      <limit effort="10.0" lower="${-30 * pi / 180}" upper="${0 * pi / 180}" velocity="0.3"/>
+      <limit effort="5.0" lower="${0 * pi / 180}" upper="${-30 * pi / 180}" velocity="0.3"/>
+      <dynamics damping="0.7" friction="0.3"/>
       <xacro:insert_block name="mimic"/>
     </joint>
     
@@ -25,9 +37,9 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/index_base_left.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.004 -0.0148 -0.005" rpy="0 ${-1 * pi / 180} 0"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.01" radius="0.08" length="0.25"/>
     </link>
     
 
@@ -41,7 +53,8 @@
       <parent link="${parent}"/>
       <child link="index_base_right_link"/>
       <axis xyz="0 1 0"/>
-      <limit effort="1000.0" lower="0.002" upper="-0.004" velocity="0.8"/>
+      <limit effort="5.0" lower="-0.004" upper="0.002" velocity="0.8"/>
+      <dynamics damping="0.7" friction="0.3"/>
       <xacro:insert_block name="mimic"/>
     </joint>
 
@@ -58,9 +71,9 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/index_base_right.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.058 0.001 -0.0212" rpy="${-90 * pi / 180} 0 0"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.01" radius="0.08" length="0.25"/>
     </link>
     
 
@@ -74,7 +87,8 @@
       <parent link="index_base_left_link"/>
       <child link="index_middle_left_link"/>
       <axis xyz="0 0 1"/>
-      <limit effort="1000.0" lower="${0 * pi / 180}" upper="${130 * pi / 180}" velocity="0.8"/>
+      <limit effort="3.0" lower="${0 * pi / 180}" upper="${130 * pi / 180}" velocity="0.8"/>
+      <dynamics damping="0.7" friction="0.3"/>
       <mimic joint="index_base_joint" multiplier="-1.4" offset="${60 * pi / 180}"/>
     </joint>
     
@@ -91,9 +105,9 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/index_middle_left.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0063 0.0068 -0.0045" rpy="0 0 0"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.01" radius="0.08" length="0.25"/>
     </link> 
     
 
@@ -108,7 +122,8 @@
       <parent link="index_base_left_link"/>
       <child link="index_middle_right_link"/>
       <axis xyz="0 0 1"/>
-      <limit effort="1000.0" lower="${0 * pi / 180}" upper="${130 * pi / 180}" velocity="0.8"/>
+      <limit effort="3.0" lower="${0 * pi / 180}" upper="${130 * pi / 180}" velocity="0.8"/>
+      <dynamics damping="0.7" friction="0.3"/>
       <mimic joint="index_base_joint" multiplier="1.4" offset="${60 * pi / 180}"/>
     </joint>
     
@@ -125,14 +140,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/index_middle_right.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.0186 0.0047 0" rpy="0 0 0"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.01" radius="0.08" length="0.25"/>
     </link>
     
 
     <!-- Color Gazebo for index base right -->
-    <gazebo reference="index_middle_left_link">
+    <gazebo reference="index_middle_right_link">
       <material>Gazebo/White</material>
     </gazebo>
 
@@ -141,7 +156,8 @@
       <parent link="index_middle_left_link"/>
       <child link="index_end_link"/>
       <axis xyz="0 1 0"/>
-      <limit effort="1000.0" lower="${0 * pi / 180}" upper="${80 * pi / 180}" velocity="0.8"/>
+      <limit effort="2.0" lower="${0 * pi / 180}" upper="${80 * pi / 180}" velocity="0.8"/>
+      <dynamics damping="0.7" friction="0.3"/>
       <mimic joint="index_base_joint" multiplier="-1" offset="${60 * pi / 180}"/>
     </joint>
     
@@ -158,14 +174,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/index_end.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.0241 -0.0156 -0.0058" rpy="0 0 0"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.01" radius="0.08" length="0.25"/>
     </link>
     
 
     <!-- Color Gazebo for index base right -->
-    <gazebo reference="index_middle_left_link">
+    <gazebo reference="index_end_link">
       <material>Gazebo/White</material>
     </gazebo>
 

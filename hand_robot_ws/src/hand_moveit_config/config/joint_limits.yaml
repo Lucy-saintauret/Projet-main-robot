@@ -1,0 +1,195 @@
+# joint_limits.yaml allows the dynamics properties specified in the URDF to be overwritten or augmented as needed
+
+# For beginners, we downscale velocity and acceleration limits.
+# You can always specify higher scaling factors (<= 1.0) in your motion requests.  # Increase the values below to 1.0 to always move at maximum speed.
+default_velocity_scaling_factor: 0.1
+default_acceleration_scaling_factor: 0.1
+
+# Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
+# Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
+joint_limits:
+  arm_steering_index_joint:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  arm_steering_middle_joint:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  arm_steering_ring_joint:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  base_rotate_joint:
+    has_velocity_limits: false
+    max_velocity: 0
+    has_acceleration_limits: false
+    max_acceleration: 0
+  forearm_base_joint:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  index_base_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  index_base_joint_fixed:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  index_end_middle_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  index_middle_left_base_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  index_middle_right_base_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  middle_base_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  middle_base_joint_fixed:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  middle_end_middle_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  middle_middle_left_base_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  middle_middle_right_base_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  pinky_base_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  pinky_base_joint_fixed:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  pinky_end_middle_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  pinky_middle_left_base_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  pinky_middle_right_base_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  ring_base_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  ring_base_joint_fixed:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  ring_end_middle_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  ring_middle_left_base_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  ring_middle_right_base_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  servo_horn_2_joint:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  servo_horn_joint:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  sg90_arm_index_joint:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  sg90_arm_middle_joint:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  sg90_arm_pinky_joint:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  sg90_arm_ring_joint:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  sg90_arm_thumb_joint:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  thumb_base_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  thumb_base_joint_fixed:
+    has_velocity_limits: true
+    max_velocity: 0.29999999999999999
+    has_acceleration_limits: false
+    max_acceleration: 0
+  thumb_end_middle_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  thumb_middle_left_base_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0
+  thumb_middle_right_base_left_joint:
+    has_velocity_limits: true
+    max_velocity: 0.80000000000000004
+    has_acceleration_limits: false
+    max_acceleration: 0

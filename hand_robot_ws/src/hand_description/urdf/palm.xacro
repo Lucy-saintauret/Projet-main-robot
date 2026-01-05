@@ -25,7 +25,7 @@
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.1" radius="0.02" length="0.04"/>
+      <xacro:cylinder_inertia mass="0.005" radius="0.02" length="0.04"/>
     </link>
 
     <!-- Color Gazebo for servo -->
@@ -39,7 +39,8 @@
       <child link="servo_2_link"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${-70 * pi / 180}" upper="${50 * pi / 180}" velocity="0.3"/>
+      <limit effort="100.0" lower="${-70 * pi / 180}" upper="${50 * pi / 180}" velocity="0.3"/>
+      <dynamics damping="3.0" friction="0.7"/>
     </joint>
 
     <!-- Servo link -->
@@ -55,10 +56,15 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/Servo_Hitec_HS_645MG.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.01 0 0.045" rpy="${180 * pi / 180} 0 ${180 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.1" radius="0.02" length="0.04"/>
+      <xacro:cylinder_inertia mass="0.005" radius="0.02" length="0.04"/>
     </link>
+
+    <!-- Color Gazebo for servo -->
+    <gazebo reference="servo_2_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="palm_servo_joint" type="fixed">
@@ -80,10 +86,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/palm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.022 0.018 0.004" rpy="${90 * pi / 180} ${-153 * pi / 180} ${95.5 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="palm_link">
+      <material>Gazebo/White</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="palm_sg90_thumb_joint" type="fixed">
@@ -105,10 +115,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/SG90.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.0025 -0.001 0" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="sg90_thumb_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
     
 
     <!-- Joint entre palm et servo -->
@@ -117,7 +131,8 @@
       <child link="sg90_arm_thumb_link"/>
       <origin xyz="0.0028 0.006 0.03" rpy="${-3 * pi / 180} ${10 * pi / 180} ${182 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${40 * pi / 180}" upper="${-10 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${-10 * pi / 180}" upper="${40 * pi / 180}" velocity="0.3"/>
+      <dynamics damping="0.7" friction="0.3"/>
     </joint>
 
     <!-- middle base left -->
@@ -133,10 +148,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/SG90_arm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0067 0.0003 0" rpy="${180 * pi / 180} ${0 * pi / 180} ${90 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="sg90_arm_thumb_link">
+      <material>Gazebo/Orange</material>
+    </gazebo>
     
     <!-- Joint entre palm et servo -->
     <joint name="palm_sg90_index_joint" type="fixed">
@@ -158,10 +177,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/SG90.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.0025 -0.001 0" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="sg90_index_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
     
 
     <!-- Joint entre palm et servo -->
@@ -170,7 +193,8 @@
       <child link="sg90_arm_index_link"/>
       <origin xyz="0.0028 0.006 0.03" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${20 * pi / 180}" upper="${-40 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${-40 * pi / 180}" upper="${20 * pi / 180}" velocity="0.3"/>
+      <dynamics damping="0.7" friction="0.3"/>
     </joint>
 
     <!-- middle base left -->
@@ -186,10 +210,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/SG90_arm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0067 0.0003 0" rpy="${180 * pi / 180} ${0 * pi / 180} ${90 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="sg90_arm_index_link">
+      <material>Gazebo/Orange</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="arm_steering_index_joint" type="revolute">
@@ -197,7 +225,8 @@
       <child link="steering_index_link"/>
       <origin xyz="0.01 0.0 0.0" rpy="${0 * pi / 180} ${0 * pi / 180} ${-90 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${30 * pi / 180}" upper="${-20 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${-20 * pi / 180}" upper="${30 * pi / 180}" velocity="0.3"/>
+      <dynamics damping="0.7" friction="0.3"/>
       <mimic joint="sg90_arm_index_joint" multiplier="-1.1" offset="${10 * pi / 180}"/>
     </joint>
 
@@ -214,10 +243,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.003 0 0" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="steering_index_link">
+      <material>Gazebo/Blue</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="steering_rod_index_joint" type="fixed">
@@ -239,10 +272,14 @@
         <geometry>
             <cylinder length="0.018" radius="0.0009"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0 0.009" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="rod_index_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="steering_rod_end_index_joint" type="fixed">
@@ -264,10 +301,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0 -0.002" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="steering_end_index_link">
+      <material>Gazebo/Blue</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="palm_sg90_middle_joint" type="fixed">
@@ -289,10 +330,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/SG90.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.0025 -0.001 0" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="sg90_middle_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
     
 
     <!-- Joint entre palm et servo -->
@@ -301,7 +346,8 @@
       <child link="sg90_arm_middle_link"/>
       <origin xyz="0.0028 0.006 0.03" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${20 * pi / 180}" upper="${-40 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${-40 * pi / 180}" upper="${20 * pi / 180}" velocity="0.3"/>
+      <dynamics damping="0.7" friction="0.3"/>
     </joint>
 
     <!-- middle base left -->
@@ -317,10 +363,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/SG90_arm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0067 0.0003 0" rpy="${180 * pi / 180} ${0 * pi / 180} ${90 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="sg90_arm_middle_link">
+      <material>Gazebo/Orange</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="arm_steering_middle_joint" type="revolute">
@@ -328,7 +378,8 @@
       <child link="steering_middle_link"/>
       <origin xyz="0.01 0.0 0.0" rpy="${0 * pi / 180} ${0 * pi / 180} ${-90 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${25 * pi / 180}" upper="${0 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${0 * pi / 180}" upper="${25 * pi / 180}" velocity="0.3"/>
+      <dynamics damping="0.7" friction="0.3"/>
       <mimic joint="sg90_arm_middle_joint" multiplier="-1" offset="${20 * pi / 180}"/>
     </joint>
 
@@ -345,10 +396,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.003 0 0" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="steering_middle_link">
+      <material>Gazebo/Blue</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="steering_rod_middle_joint" type="fixed">
@@ -370,10 +425,14 @@
         <geometry>
             <cylinder length="0.02" radius="0.0009"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0 0.01" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="rod_middle_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="steering_rod_end_middle_joint" type="fixed">
@@ -395,10 +454,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0 -0.002" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="steering_end_middle_link">
+      <material>Gazebo/Blue</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="palm_sg90_ring_joint" type="fixed">
@@ -420,10 +483,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/SG90.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.0025 -0.001 0" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="sg90_ring_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
     
 
     <!-- Joint entre palm et servo -->
@@ -432,7 +499,8 @@
       <child link="sg90_arm_ring_link"/>
       <origin xyz="0.0028 0.006 0.03" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${20 * pi / 180}" upper="${-40 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${-40 * pi / 180}" upper="${20 * pi / 180}" velocity="0.3"/>
+      <dynamics damping="0.7" friction="0.3"/>
     </joint>
 
     <!-- middle base left -->
@@ -448,10 +516,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/SG90_arm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0067 0.0003 0" rpy="${180 * pi / 180} ${0 * pi / 180} ${90 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="sg90_arm_ring_link">
+      <material>Gazebo/Orange</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="arm_steering_ring_joint" type="revolute">
@@ -459,7 +531,8 @@
       <child link="steering_ring_link"/>
       <origin xyz="0.01 0.0 0.0" rpy="${0 * pi / 180} ${0 * pi / 180} ${-90 * pi / 180}"/>
       <axis xyz="0 0 1"/>
-      <limit effort="10.0" lower="${25 * pi / 180}" upper="${0 * pi / 180}" velocity="0.3"/>
+      <limit effort="10.0" lower="${0 * pi / 180}" upper="${25 * pi / 180}" velocity="0.3"/>
+      <dynamics damping="0.7" friction="0.3"/>
       <mimic joint="sg90_arm_ring_joint" multiplier="-1" offset="${20 * pi / 180}"/>
     </joint>
 
@@ -476,10 +549,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.003 0 0" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="steering_ring_link">
+      <material>Gazebo/Blue</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="steering_rod_ring_joint" type="fixed">
@@ -501,10 +578,14 @@
         <geometry>
             <cylinder length="0.02" radius="0.0009"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0 0.01" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="rod_ring_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="steering_rod_end_ring_joint" type="fixed">
@@ -526,10 +607,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/steeringlink_end_v2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0 -0.002" rpy="${0 * pi / 180} ${0 * pi / 180} ${0 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="steering_end_ring_link">
+      <material>Gazebo/Blue</material>
+    </gazebo>
 
     <!-- Joint entre palm et servo -->
     <joint name="palm_sg90_pinky_joint" type="fixed">
@@ -551,10 +636,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/SG90.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.0025 -0.001 0" rpy="${-3 * pi / 180} ${10 * pi / 180} ${2 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="sg90_pinky_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
     
 
     <!-- Joint entre palm et servo -->
@@ -564,6 +653,7 @@
       <origin xyz="0.0028 0.006 0.03" rpy="${-3 * pi / 180} ${10 * pi / 180} ${92 * pi / 180}"/>
       <axis xyz="0 0 1"/>
       <limit effort="10.0" lower="${-20 * pi / 180}" upper="${40 * pi / 180}" velocity="0.3"/>
+      <dynamics damping="0.7" friction="0.3"/>
     </joint>
 
     <!-- middle base left -->
@@ -579,10 +669,14 @@
         <geometry>
           <mesh filename="package://hand_description/meshes/SG90_arm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0067 0.0003 0" rpy="${180 * pi / 180} ${0 * pi / 180} ${90 * pi / 180}"/>
       </collision>
-      <xacro:cylinder_inertia mass="0.5" radius="0.08" length="0.25"/>
+      <xacro:cylinder_inertia mass="0.03" radius="0.08" length="0.25"/>
     </link>
+
+    <gazebo reference="sg90_arm_pinky_link">
+      <material>Gazebo/Orange</material>
+    </gazebo>
 
 
   </xacro:macro>
